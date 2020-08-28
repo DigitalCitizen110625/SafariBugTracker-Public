@@ -12,8 +12,8 @@
 ## 📝 Table of Contents
 
 * [Demo]()
-* [About](https://github.com/DigitalCitizen110625/SafariBugTracker-Public#About-Safari-Bug-Tracker)
-* [FAQ](https://github.com/DigitalCitizen110625/SafariBugTracker-Public#FAQ)
+* [About](https://github.com/DigitalCitizen110625/SafariBugTracker-Public#elephantabout-safari-bug-tracker)
+* [FAQ](https://github.com/DigitalCitizen110625/SafariBugTracker-Public#grey_questionfaq)
 * [Software Requirment Specifications](https://github.com/DigitalCitizen110625/SafariBugTracker-Public/SRS/SafariBugTracker_SRS.docx)
 
 ## :elephant:	About Safari Bug Tracker
