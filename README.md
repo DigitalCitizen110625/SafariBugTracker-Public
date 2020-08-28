@@ -1,6 +1,6 @@
 # SafariBugTracker-Public
 
-![Safari Logo]()
+![Safari Logo](https://github.com/DigitalCitizen110625/SafariBugTracker-Public/blob/master/ReadmeAssests/SafariLogo.png)
 
 <h1 align="center">Safari Bug Tracker</h1>
  
