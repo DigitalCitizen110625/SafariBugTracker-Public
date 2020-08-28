@@ -1,0 +1,488 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using SafariBugTracker.WebApp.Areas.Identity.Data
+
+@inject SignInManager<UserContext> SignInManager
+@inject UserManager<UserContext> UserManager
+@model ContactMessage
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<!--    Back To Top Button
+=============================================== -->
+<a href="#0" target="_self" id="gotoTopButton" class="gotoTop">Top</a>
+
+
+<!--    Demo Information Modal (Pops up on page load)
+=============================================== -->
+<!-- If the user hasn't logged in, display the popup modal-->
+@if (!SignInManager.IsSignedIn(User))
+{
+    <div class="modal fade" id="modalDemoPopup" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h1 class="modal-title w-100">Welcome!</h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 v-center">
+                            <p class="modal-body-text text-center">
+                                Log in as a guest to use the app with pre-populated data:
+                            </p>
+                            <div class="modal-body-text text-center">
+                                <b>Username: </b> Guest@domain.com
+                                <br />
+                                <b>Password: </b> GuestPassword123!
+                            </div>
+                            <p class="modal-body-text text-center m-t-10">
+                                Or, sign-up for a new account to start from scratch
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<!--    Alert Message
+=============================================== -->
+<div class="fit-to-screen-width">
+    <partial name="_ControllerAlert" />
+</div>
+
+
+
+<!--    Hero
+=============================================== -->
+<section>
+    <div class="container">
+        <img class="hero" src="~/images/undraw_bug_fixing_oc7a.svg" />
+    </div>
+</section>
+
+
+<!--    About
+=============================================== -->
+<section id="About" class="section-spacing-40">
+    <div class="container">
+        <section class="section bg-white">
+            <div class="container">
+
+                <!--Section Heading -->
+                <div class="section-heading m-b-30 section-heading-center">
+                    <h1 class="" style="font-weight:600;">What Is Safari?</h1>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-9">
+                        <p class="text-center section-content-text m-b-50" style="font-size: 23px;">
+                            Safari is a cloud-based issue management system designed for small agile teams.
+                            It’s a free solution for QA staff, project managers, and developers seeking to store,
+                            and quantify software issues in a structured manner
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card-deck">
+
+                    <!-- Spacer card -->
+                    <div class="card border-0">
+                    </div>
+
+                    <!-- Github card -->
+                    <div class="card about-card">
+                        <a href="https://github.com/DigitalCitizen110625/SafariBugTracker">
+                            &nbsp;
+                            <img class="card-img-top wow zoomIn" src="~/images/github_Logo.png" alt="Source Code">
+                            &nbsp;
+                        </a>
+                    </div>
+
+                    <!-- Linkedin card -->
+                    <div class="card about-card">
+                        <a href="https://ca.linkedin.com/in/bence-karner-883862179">
+                            &nbsp;
+                            <img class="card-img-top wow zoomIn" src="~/images/profile_Logo.png" alt="My Portfolio">
+                            &nbsp;
+                        </a>
+                    </div>
+
+                    <!-- Spacer card -->
+                    <div class="card border-0">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</section>
+
+
+<!--    Features
+=============================================== -->
+<section id="Features" class="section-spacing-80 bg-white">
+    <div class="container">
+
+        <!-- Right -->
+        <div class="row align-items-md-center">
+            <div class="col-md-6 m-t-50">
+                <h3 class="section-heading m-b-20">Report Bugs Fast </h3>
+                <p>
+                    Capture the critical details of an error without feeling like you're filling out a tax return.
+                    Using the built in template, you can record:
+                </p>
+                <ul class="feature-point-list">
+                    <li class="feature-point-list-item li-style-2">
+                        <i class="list-icon fas fa-bug"></i>
+                        <span class="list-text">The properties of the error</span>
+                    </li>
+                    <li class="feature-point-list-item li-style-2">
+                        <i class="list-icon fas fa-exclamation-triangle"></i>
+                        <span class="list-text">The expected vs. actual results</span>
+                    </li>
+                    <li class="feature-point-list-item li-style-2">
+                        <i class="list-icon far fa-keyboard"></i>
+                        <span class="list-text">The steps to reproduce the error</span>
+                    </li>
+                    <li class="feature-point-list-item li-style-2">
+                        <i class="list-icon fas fa-user-plus"></i>
+                        <span class="list-text">And assign it to a team member</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <div class="wow fadeInDown" data-wow-duration="0.7s" data-wow-delay="0.2s">
+                    <img class="img-fluid max-height-420" src="~/images/undraw_add_file3_gvbb.png" alt="Report Bugs Fast">
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Left -->
+        <div class="row align-items-md-center m-t-60">
+            <div class="col-md-6">
+                <div class="wow fadeInDown" data-wow-duration="0.7s" data-wow-delay="0.2s">
+                    <img class="img-fluid max-height-420" src="~/images/undraw_dashboard_nklg.png" alt="Detailed Dashboard">
+                </div>
+            </div>
+            <div class="col-md-6 m-t-60">
+                <h3 class="section-heading m-b-20">Detailed Dashboard</h3>
+                <p class="m-b-5">
+                    View your projects latest metrics and KPIs, including:
+                </p>
+                <ul class="feature-point-list">
+                    <li class="feature-point-list-item li-style-2">
+                        <i class="list-icon fas fa-chart-line"></i>
+                        <span class="list-text">Daily, monthly, and lifetime metrics</span>
+                    </li>
+                    <li class="feature-point-list-item li-style-2">
+                        <i class="list-icon fas fa-chart-pie"></i>
+                        <span class="list-text">Issue counts and their distributions</span>
+                    </li>
+                    <li class="feature-point-list-item li-style-2">
+                        <i class="list-icon far fa-chart-bar"></i>
+                        <span class="list-text">Issue and resolve status breakdowns</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <!-- Right -->
+        <div class="row align-items-md-center m-t-60 m-b-60">
+            <div class="col-md-6 m-t-50">
+                <h3 class="section-heading m-b-20">Powerful Searching</h3>
+                <p class="m-b-10">
+                    Take advantage of both basic, and advanced search options to find the records you want, in the 
+                    least amount of time.
+                </p>
+                <ul class="feature-point-list">
+                    <li class="feature-point-list-item li-style-2">
+                        <i class="list-icon fas fa-list-ol"></i>
+                        <span class="list-text">Use up to 10 search options to find a record</span>
+                    </li>
+                    <li class="feature-point-list-item li-style-2">
+                        <i class="list-icon fa fa-search"></i>
+                        <span class="list-text">Find records between, greater than, or less than a search field</span>
+                    </li>
+                    <li class="feature-point-list-item li-style-2">
+                        <i class="list-icon fas fa-exclamation"></i>
+                        <span class="list-text">And many more!</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <div class="wow fadeInDown" data-wow-duration="0.7s" data-wow-delay="0.2s">
+                    <img class="img-fluid max-height-420" src="~/images/undraw_file_searching_duff.svg" alt="Powerful Searching">
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Left -->
+        <div class="row align-items-md-center m-t-60 m-b-60">
+            <div class="col-md-6">
+                <div class="wow fadeInDown" data-wow-duration="0.7s" data-wow-delay="0.2s">
+                    <img class="img-fluid max-height-420" src="~/images/undraw_performance_overview_p9bm.png" alt="Built In User Management">
+                </div>
+            </div>
+            <div class="col-md-6 m-t-60">
+                <h3 class="section-heading m-b-20">Built In User Management</h3>
+                <p class="m-b-10">
+                    Using ASP.NET Core Identity, the system supports:
+                </p>
+                <ul class="feature-point-list">
+                    <li class="feature-point-list-item li-style-2">
+                        <i class="list-icon fa fa-user-lock"></i>
+                        <span class="list-text">Account registration, and login access</span>
+                    </li>
+                    <li class="feature-point-list-item li-style-2">
+                        <i class="list-icon far fa-id-card"></i>
+                        <span class="list-text"> Custom profiles, roles, and permissions</span>
+                    </li>
+                    <li class="feature-point-list-item li-style-2">
+                        <i class="list-icon fas fa-user-shield"></i>
+                        <span class="list-text">Additional privileges for admins/PMs</span>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+
+        <!-- Right -->
+        <div class="row align-items-md-center m-t-60">
+            <div class="col-md-6 ">
+                <h3 class="section-heading m-b-20">Configurable Centralized Logging</h3>
+                <p class=" m-b-10">
+                    Configure the system to receive logs from any application on any platform.
+                    Logs can be saved locally to:
+                </p>
+                <ul class="feature-point-list">
+                    <li class="feature-point-list-item li-style-2">
+                        <i class="list-icon fa fa-file-alt"></i>
+                        <span class="list-text">Txt</span>
+                    </li>
+                    <li class="feature-point-list-item li-style-2">
+                        <i class="list-icon fas fa-file"></i>
+                        <span class="list-text">Json</span>
+                    </li>
+                    <li class="feature-point-list-item li-style-2">
+                        <i class="list-icon far fa-file"></i>
+                        <span class="list-text">Binary</span>
+                    </li>
+                </ul>
+                <p>
+                    Or remotely to the cloud <strong>(Coming Soon!)</strong>
+                </p>
+                <ul class="feature-point-list">
+                    <li class="feature-point-list-item li-style-2">
+                        <i class="list-icon fa fa-table"></i>
+                        <span class="list-text"><a href="https://docs.microsoft.com/en-us/azure/storage/tables/table-storage-overview">Azure Table service</a></span>
+                    </li>
+                    <li class="feature-point-list-item li-style-2">
+                        <i class="list-icon fa fa-database"></i>
+                        <span class="list-text"><a href="https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction"> Azure Blob Storage</a></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <div class="wow fadeInDown" data-wow-duration="0.7s" data-wow-delay="0.2s">
+                    <img class="img-fluid max-height-420" src="~/images/undraw_control_panel1_20gm.svg" alt="Centralized Logging" data-wow-duration="0.5s" data-wow-delay="0.4s">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--    Specs Highlight Cards
+=============================================== -->
+<section id="Highlights" class="section-spacing-40 bg-white">
+    <div class="container">
+
+        <!-- Section Heading -->
+        <div class="row ">
+            <div class="w-100 text-xs-center">
+                <h3 class="section-heading section-heading-center m-b-45">Design Highlights</h3>
+            </div>
+        </div>
+
+
+        <!-- Fully Responsive -->
+        <div class="card-deck m-b-20">
+            <a class="card border-0 wow fadeIn"
+               data-wow-delay="0.1s"
+               tabindex="0"
+               style="z-index:1000; 
+               position:relative;"
+               role="button"
+               data-toggle="popover"
+               data-placement="bottom"
+               data-trigger="focus"
+               data-container="body"
+               title="Responsive Web Design"
+               data-content=" Whether viewed on mobile, web, or desktop, the UI adjusts to any resolution, and screen size">
+                <span class="card-img-top iconify p-t-15" data-icon="logos:jquery-mobile" data-inline="false" data-width="60" data-height="60"></span>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Fully Responsive</h5>
+                </div>
+            </a>
+
+            <!-- Well Documented -->
+            <a class="card border-0 wow fadeIn"
+               data-wow-delay="0.2s"
+               tabindex="0"
+               style="z-index:1000; 
+               position:relative;"
+               role="button"
+               data-toggle="popover"
+               data-placement="bottom"
+               data-trigger="focus"
+               data-container="body"
+               title="Complete API Documentation"
+               data-content="You'll never have to guess how the system works, or how to interact with the APIs.
+               Every class, method, and function has been documented with OpenAPI/Swagger.
+               Find the complete API documentation here">
+                <span class="card-img-top iconify p-t-15" data-icon="emojione:blue-book" data-inline="false" data-width="60" data-height="60"></span>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Well Documented</h5>
+                </div>
+            </a>
+
+            <!-- Easy To Use -->
+            <a class="card border-0 wow fadeIn"
+               data-wow-delay="0.1s"
+               tabindex="0"
+               style="z-index:1000; 
+               position:relative;"
+               role="button"
+               data-toggle="popover"
+               data-placement="bottom"
+               data-trigger="focus"
+               data-container="body"
+               title="Simplicity By Design"
+               data-content="Designed to be straight forward and intutitive to help boost you're productivity">
+                <div class="card-img-top p-t-15 text-center">
+                    <i class="fas fa-child fa-5x" style="width: 40px; height:40px; font-size: 40px; color: ThreeDDarkShadow;"></i>
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Easy To Use </h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- Cross Platform -->
+        <div class="card-deck">
+            <a class="card border-0 wow fadeIn" 
+               data-wow-delay="0.2s"
+               tabindex="0"
+               style="z-index:1000; 
+               position:relative;"
+               role="button"
+               data-toggle="popover"
+               data-placement="bottom"
+               data-trigger="focus"
+               data-container="body"
+               title="Windows, OSX, Linux"
+               data-content="Both the web application, and the API's were built using ASP.NET Core, so the system works across all major operating systems">
+
+                <div class="card-img-top text-center">
+                    <span class="iconify " data-icon="wpf-mac-os" data-inline="true" data-width="60" data-height="60" style="color: silver;"></span>
+                    <span class="iconify" data-icon="logos-microsoft-windows" data-inline="true" data-width="60" data-height="60"></span>
+                    <span class="iconify" data-icon="logos-linux-tux" data-inline="true" data-width="60" data-height="60"></span>
+
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Cross Platform</h5>
+                </div>
+            </a>
+
+            <!--Secure Data -->
+            <a class="card border-0 wow fadeIn" 
+               data-wow-delay="0.3s"
+               tabindex="0"
+               style="z-index:1000; 
+               position:relative;"
+               role="button"
+               data-toggle="popover"
+               data-placement="bottom"
+               data-trigger="focus"
+               data-container="body"
+               title="Secure Communications & Encrypted Data"
+               data-content="All communications occur over HTTPS, and data saved to the databases is encrpyted with AES-256 bit encryption">
+
+                <span class="card-img-top iconify p-t-15" data-icon="flat-ui:lock" data-inline="false" data-width="60" data-height="60"></span>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Secure Data</h5>
+                </div>
+            </a>
+
+            <!--MIT License -->
+            <a class="card border-0 wow fadeIn" 
+               data-wow-delay="0.4s"
+               tabindex="0"
+               style="z-index:1000; 
+               position:relative;"
+               role="button"
+               data-toggle="popover"
+               data-placement="bottom"
+               data-trigger="focus"
+               data-container="body"
+               title="It's All Free"
+               data-content="Feel free to use all, or any portion of the source code as you wish.
+               You can copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software as you see fit.
+               No attribution is required (unless stated otherwise)">
+                <span class="card-img-top iconify p-t-15" data-icon="octicon:law" data-inline="false" data-width="60" data-height="60"></span>
+                <div class="card-body text-center">
+                    <h5 class="card-title">MIT License </h5>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<!--    Contact us
+=============================================== -->
+<section id="Contact" class="section-spacing-40 bg-light fit-to-screen-width">
+    <div class="container">
+
+        <!-- Section Heading -->
+        <h3 class="section-heading section-heading-center m-b-45">
+            Have a Question?
+            <br />
+            Send me a Message
+        </h3>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="messages" id="status"></div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+
+                <!-- Contact Form -->
+                <partial name="Home/_ContactEmailForm" model="@Model" />
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<partial name="Home/_LayoutFooter" />
+
+
+<!--   Index Page Javascript
+=============================================== -->
+<script src="~/js/Home/Index.js"></script>

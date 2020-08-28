@@ -1,0 +1,26 @@
+﻿@model (bool originalPoster, Message message)
+
+<!-- If the poster, of the message, is the original author, then we shall 
+    apply a different style to their message-->
+@if (Model.originalPoster)
+{
+    <div class="message to">
+        <div class="text-right">
+            <small><strong>@Model.message.PosterDisplayName</strong></small>
+            <small>@Model.message.PostDate</small>
+            <div class="spacer-5"></div>
+            @Model.message.MessageContent
+        </div>
+    </div>
+}
+else
+{
+    <div class="message from">
+        <div class="text-left">
+            <small><strong>@Model.message.PosterDisplayName</strong></small>
+            <small>@Model.message.PostDate</small>
+            <div class="spacer-5"></div>
+            @Model.message.MessageContent
+        </div>
+    </div>
+}

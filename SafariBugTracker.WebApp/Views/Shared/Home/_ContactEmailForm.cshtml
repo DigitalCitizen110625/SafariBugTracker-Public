@@ -1,0 +1,41 @@
+﻿@model ContactMessage
+
+<form class="section-form-group" asp-action="Index" method="post" name="ContactMessage">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="input-item form-group">
+        <input class="contact-input-pill"
+               asp-for="@Model.ContactName"
+               type="text"
+               name="ContactName"
+               placeholder="Name"
+               required data-error="Please enter your name" />
+        <span asp-validation-for="ContactName" class="text-danger" />
+    </div>
+    <div class="input-item form-group">
+        <div class=""></div>
+        <input class="contact-input-pill"
+               asp-for="@Model.ContactEmail"
+               type="email"
+               name="ContactEmail"
+               placeholder="Email"
+               required data-error="Please enter an email" />
+        <span asp-validation-for="ContactEmail" class="text-danger" />
+    </div>
+    <div class="input-item form-group">
+        <textarea class="contact-input-pill"
+                  asp-for="@Model.Message"
+                  name="Message"
+                  placeholder="Enter your message"
+                  required data-error="Please enter a message"
+                  style="height: 115px;"
+                  data-max-char-limit="1000"></textarea>
+
+        <span class="text-muted">Remaining: 1000 characters </span>
+        <span asp-validation-for="Message" class="text-danger" />
+    </div>
+    <div class="input-item form-group">
+        <div class=""></div>
+        <input class="contact-button contact-button-primary" type="submit" value="Submit">
+
+    </div>
+</form>

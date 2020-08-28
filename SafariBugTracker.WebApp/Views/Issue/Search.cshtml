@@ -1,0 +1,304 @@
+﻿@using SafariBugTracker.WebApp.Models.ViewModels
+@model PaginatedList<IIssue>
+@{
+    ViewData["Title"] = "Search Issues";
+    Layout = "~/Views/Shared/Dashboard/_LayoutDashboard.cshtml";
+}
+
+<!-- Search and Filter  -->
+<div class="dashboard-search-panel">
+    <ul class="nav nav-tabs border-0 pt-2">
+        <li class="nav-item w-50 text-center">
+            <a class="nav-link search-tab active" data-toggle="tab" href="#simpleSearch">Simple</a>
+        </li>
+        <li class="nav-item w-50 text-center">
+            <a class="nav-link search-tab" data-toggle="tab" href="#advancedSearch">Advanced</a>
+        </li>
+    </ul>
+    <div class="tab-content card-body">
+
+        <!-- Simple Search Tab -->
+        <div id="simpleSearch" class="tab-pane fade show active">
+            <form method="get" asp-action="Search" asp-controller="Issue">
+
+                <div class="form-row">
+                    <div id="simple-search-bar" class="form-group col-sm-12 ">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class=" input-group-text">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </div>
+                            <input type="search" class="form-control" name="keyword" placeholder="Enter Keywords" />
+                            <div class="input-group-append">
+                                <input type="submit" value="submit" class="btn" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <!-- Advanced Search Tab-->
+        <div id="advancedSearch" class="tab-pane fade">
+            <form method="get" asp-action="Search" asp-controller="Issue">
+
+
+                <!-- Keyword Search Field-->
+                <div class="form-row">
+                    <div class="form-group col-sm-12 col-md-6">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class=" input-group-text">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </div>
+                            <input type="search" class="form-control" name="keyword" placeholder="Enter Keywords" />
+                        </div>
+                    </div>
+
+
+                    <!-- ID Search Field-->
+                    <div class="form-group col-sm-12 col-md-6">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class=" input-group-text">
+                                    <i class="fas fa-info"></i>
+                                </span>
+                            </div>
+                            <input type="search" class="form-control" name="id" placeholder="Enter ID" />
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Original Author Field-->
+                <div class="form-row">
+                    <div class="form-group col-sm-12 col-md-6">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class=" input-group-text">
+                                    <i class="fas fa-user-edit"></i>
+                                </span>
+                            </div>
+                            <input type="search" class="form-control" name="author" placeholder="Issue Author" />
+                        </div>
+                    </div>
+
+
+                    <!-- Assigned To Field-->
+                    <div class="form-group col-sm-12 col-md-6">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class=" input-group-text">
+                                    <i class="fas fa-user-alt"></i>
+                                </span>
+                            </div>
+                            <input type="search" class="form-control" name="assignedTo" placeholder="Assinged To User" />
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Date Field-->
+                <div class="form-row">
+                    <div class="form-group col-sm-12 col-md-12">
+                        <label for="date" class="text-white"> Date</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary dropdown-toggle search-button" type="button" data-toggle="dropdown">Date Options</button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Submitted On</a>
+                                    <a class="dropdown-item" href="#">Before</a>
+                                    <a class="dropdown-item" href="#">After</a>
+                                    <a class="dropdown-item" href="#">Between</a>
+
+                                </div>
+                            </div>
+                            <input type="search" class="form-control" name="startDate" data-calendar="true" />
+                            <input type="hidden" class="d-none" name="dateSearchType" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-6 d-none">
+                        <label for="version" class="text-white"> Date</label>
+                        <input type="search" class="form-control" name="endDate" placeholder="End" data-calendar="true" />
+                    </div>
+                </div>
+                <div class="form-row">
+
+
+                    <!-- Platform Field-->
+                    <div class="form-group col-sm-12 col-md-4">
+                        <label for="platform" class="text-white"> Platform</label>
+                        <input type="search" class="form-control" name="platform" />
+                    </div>
+
+
+                    <!-- Product Field-->
+                    <div class="form-group col-sm-12 col-md-4">
+                        <label for="product" class="text-white"> Product</label>
+                        <input type="search" class="form-control" name="product" />
+                    </div>
+
+
+                    <!-- Category Field-->
+                    <div class="form-group col-sm-12 col-md-4">
+                        <label for="category" class="text-white"> Category</label>
+                        <input type="search" class="form-control" name="category" />
+                    </div>
+                </div>
+
+
+                <!-- Version Field-->
+                <div class="form-row">
+                    <div class="form-group col-sm-12 col-md-12">
+                        <label for="version" class="text-white"> Version</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary dropdown-toggle search-button" type="button" data-toggle="dropdown">Version Options</button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Matches</a>
+                                    <a class="dropdown-item" href="#">Before</a>
+                                    <a class="dropdown-item" href="#">After</a>
+                                    <a class="dropdown-item" href="#">Between</a>
+
+                                </div>
+                            </div>
+                            <input type="search" class="form-control" name="startVersion" placeholder="" />
+                            <input type="hidden" class="d-none" name="versionSearchType" value="" />
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-12 col-md-6 d-none">
+                        <label for="version" class="text-white"> Version</label>
+                        <input type="search" class="form-control" name="endVersion" placeholder="End" />
+                    </div>
+                </div>
+
+
+                <!-- Resolve Statues Field-->
+                <div class="form-row">
+                    <div class="form-group w-100">
+                        <label for="resolveStatus" class="text-white"> Resolve Status </label>
+                        <div class="table-responsive-md w-100">
+                            <table class="table table-borderless table-sm">
+                                <tbody>
+                                    <tr>
+                                        <td class="border-0">
+                                            <div class="form-check">
+                                                <input type="radio" name="resolveStatus" class="form-check-input" value="All" checked>
+                                                <label class="form-check-label text-white"> All</label>
+                                            </div>
+                                        </td>
+                                        <td class="border-0">
+                                            <div class="form-check">
+                                                <input type="radio" name="resolveStatus" class="form-check-input" value="New">
+                                                <label class="form-check-label text-white"> New</label>
+                                            </div>
+                                        </td>
+                                        <td class="border-0">
+                                            <div class="form-check">
+                                                <input type="radio" name="resolveStatus" class="form-check-input" value="Assigned">
+                                                <label class="form-check-label text-white"> Assigned</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border-0">
+                                            <div class="form-check">
+                                                <input type="radio" name="resolveStatus" class="form-check-input" value="Fixed">
+                                                <label class="form-check-label text-white"> Fixed </label>
+                                            </div>
+                                        </td>
+                                        <td class="border-0">
+                                            <div class="form-check">
+                                                <input type="radio" name="resolveStatus" class="form-check-input" value="Retested">
+                                                <label class="form-check-label text-white"> Retested </label>
+                                            </div>
+                                        </td>
+                                        <td class="border-0">
+                                            <div class="form-check">
+                                                <input type="radio" name="resolveStatus" class="form-check-input" value="Verified">
+                                                <label class="form-check-label text-white"> Verified </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border-0">
+                                            <div class="form-check">
+                                                <input type="radio" name="resolveStatus" class="form-check-input" value="Closed">
+                                                <label class="form-check-label text-white"> Closed </label>
+                                            </div>
+                                        </td>
+
+                                        <td class="border-0">
+                                            <div class="form-check">
+                                                <input type="radio" name="resolveStatus" class="form-check-input" value="Deferred">
+                                                <label class="form-check-label text-white"> Deferred </label>
+                                            </div>
+                                        </td>
+                                        <td class="border-0">
+                                            <div class="form-check">
+                                                <input type="radio" name="resolveStatus" class="form-check-input" value="Rejected">
+                                                <label class="form-check-label text-white"> Rejected </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border-0">
+                                            <div class="form-check">
+                                                <input type="radio" name="resolveStatus" class="form-check-input" value="Duplicate">
+                                                <label class="form-check-label text-white"> Duplicate </label>
+                                            </div>
+                                        </td>
+                                        <td class="border-0">
+                                            <div class="form-check">
+                                                <input type="radio" name="resolveStatus" class="form-check-input" value="Reopened">
+                                                <label class="form-check-label text-white"> Reopened </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                                <!-- version table end-->
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row d-block text-center">
+                    <input type="submit" value="submit" class="btn btn-primary w-auto" />
+                </div>
+
+                <!-- form end-->
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Print any errors or success to the view -->
+<partial name="_ControllerAlert" />
+
+
+<!-- Page Tile -->
+<partial name="_PageTitle" model="@ViewData["Title"]" />
+
+
+<!-- Query Results Table -->
+<partial name="Issue/_PaginatedList" model="@Model">
+
+
+
+    <!--    JQuery UI
+    =============================================== -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <!--    Pagination.js
+    =============================================== -->
+    <script src="https://pagination.js.org/dist/2.1.5/pagination.min.js"></script>
+
+    <!--    Custom JS
+    =============================================== -->
+    <script src="~/js/Issue/Search.js"></script>

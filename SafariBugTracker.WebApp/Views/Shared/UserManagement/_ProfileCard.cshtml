@@ -1,0 +1,57 @@
+﻿<!--
+    Credit for the css/styling of the profile cards belongs to the original author at the URL below
+    SOURCE: https://codepen.io/ebekirbayar/pen/pxbqmm?editors=1100
+-->
+@using Microsoft.AspNetCore.Identity;
+@using SafariBugTracker.WebApp.Areas.Identity.Data;
+@using SafariBugTracker.WebApp.Models.ViewModels; 
+@model UserViewModel
+
+@{
+    //Show a default profile image unless they've uploaded a custom pictuire to their account
+    string profilePicture = "~/images/profileAvatar/defaultUser.svg";
+    if (Model.ProfileImage != null)
+    {
+        var base64 = Convert.ToBase64String(Model.ProfileImage);
+        profilePicture = String.Format($"data:{Model.ContentType};base64,{base64}");
+    }
+
+    //Show the default desigations if the're not set in the users account
+    var role = Model.Role ?? "Role Not Set";
+    var position = Model.Position ?? "Position Not Set";
+    var displayName = Model.DisplayName ?? "Display Name Not Set";
+}
+
+
+<div class="card profile-card grow">
+    <div class="background-block">
+        <img src="~/images/backgrounds/1920x1080-laser-lemon-solid-color-background.jpg" class="background" />
+    </div>
+    <div>
+        <img src="@profilePicture" class="profile" alt="User Profile Image " />
+    </div>
+    <div class="card-content">
+        <h5>
+            <strong> @Model.FirstName @Model.LastName </strong>
+            <br />
+            <small class="my-1">@displayName</small>
+            <br />
+            <small class="my-1">@position</small>
+            <br />
+            <small class="my-1">@role</small>
+            <br />
+        </h5>
+        <div class="text-center">
+
+            <!-- Buttons allow admins, and project managers to edit the accounts of users in their team -->
+            @if (User.Identity.IsAuthenticated && (User.IsInRole("Administrator") || User.IsInRole("Project Manager")))
+            {
+                <a class="btn dashboard-button-primary my-1" asp-action="EditUser" asp-controller="UserManagement" asp-route-id=@Model.Id>Edit</a>
+            }
+            else
+            {
+                <a class="btn dashboard-button-primary disabled my-1" disabled>Edit</a>
+            }
+        </div>
+    </div>
+</div>

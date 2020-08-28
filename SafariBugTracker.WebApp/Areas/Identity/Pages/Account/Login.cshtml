@@ -1,0 +1,134 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+<div class="container">
+
+    <!-- Heading -->
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="text-center m-t-15 m-b-15">Login</h1>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+            <div class="card" style="box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.1); border-radius: 10px;">
+
+
+                <!-- Profile icon -->
+                <i class="fas fa-user-circle fa-9x text-center m-t-10 m-b-5" style="color: rgba(108, 99,255,1);"></i>
+
+
+                <!-- Forms contents -->
+                <div class="px-5">
+                    <form id="account" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                </div>
+                                <input asp-for="LoginForm.Email" class="form-control login-form-control" placeholder="Email Address" />
+                            </div>
+                            @*<span asp-validation-for="Input.Email" class="text-danger"/>*@
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-lock"></i>
+                                    </div>
+                                </div>
+                                <input asp-for="LoginForm.Password" class="form-control login-form-control" placeholder="Password" />
+                            </div>
+                            @*<span asp-validation-for="Input.Password" class="text-danger"/>*@
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label asp-for="LoginForm.RememberMe">
+                                    <input asp-for="LoginForm.RememberMe" />
+                                    @Html.DisplayNameFor(m => m.LoginForm.RememberMe)
+                                </label>
+                            </div>
+                        </div>
+
+
+                        <!-- Submit button -->
+                        <div class="form-group">
+                            <button type="submit" class="btn login-button-primary">Log in</button>
+                        </div>
+
+
+                        <!-- Forgot password & Register -->
+                        <div class="form-group">
+                            <p>
+                                <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                            </p>
+                            <p>
+                                Don't have an account?
+                                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Sign up!</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+                <!-- Card end -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Login from another service -->
+    <div class="row m-t-30 m-b-250">
+        <div class="col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+            <hr />
+            <h4 class="text-center">Log in With Another Service</h4>
+            <br />
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div class="text-center">
+                        <h5>OAuth 2.0 Coming Soon!</h5>
+                        <p>
+                            Login using your Google account in the next release
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </div>
+    </div>
+    <!-- div container end -->
+</div>
+
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<div class="spacer-130"></div>
+
+<div class="footer-absolute-wrapper">
+    <partial name="Home/_LayoutFooter" />
+</div>

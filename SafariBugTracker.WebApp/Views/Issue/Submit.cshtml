@@ -1,0 +1,128 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using SafariBugTracker.WebApp.Areas.Identity.Data
+@inject UserManager<UserContext> UserManager
+@model Issue
+@{
+    ViewData["Title"] = "Submit An Issue";
+    Layout = "~/Views/Shared/Dashboard/_LayoutDashboard.cshtml";
+    var userContext = await UserManager.GetUserAsync(User);
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <!-- View Title Heading -->
+            <partial name="_PageTitle" model="@ViewData["Title"]" />
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+
+            <!-- Print the result of the submission -->
+            <partial name="_ControllerAlert" />
+
+            <!-- Submission Form -->
+            <div class="card dashboard-card mx-auto">
+                <div class="card-body">
+                    <form method="post" action="" autocomplete="off" enctype="multipart/form-data">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label asp-for="Platform"></label>
+                                <input type="search" class="form-control" asp-for="@Model.Platform" id="platformInput" />
+                                <span asp-validation-for="@Model.Platform" class="text-danger" />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label asp-for="Product"></label>
+                                <input type="search" class="form-control" asp-for="@Model.Product" id="productInput" />
+                                <span asp-validation-for="@Model.Product" class="text-danger" />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label asp-for="Version"></label>
+                                <input type="search" class="form-control" asp-for="@Model.Version" id="versionInput" />
+                                <span asp-validation-for="@Model.Version" class="text-danger" />
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label asp-for="@Model.Category">Category*</label>
+                                <input type="search" asp-for="@Model.Category" class="form-control" id="categoryInput" />
+                                <span asp-validation-for="@Model.Category" class="text-danger" />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label asp-for="Project"></label>
+                                <input type="search" class="form-control" asp-for="@Model.Project" id="projectInput" />
+                                <span asp-validation-for="@Model.Project" class="text-danger" />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label asp-for="Team"></label>
+                                <input type="search" class="form-control" asp-for="@Model.Team" id="teamInput" />
+                                <span asp-validation-for="@Model.Team" class="text-danger" />
+                            </div>
+                        </div>
+
+                        <div class="form-group m-b-25">
+                            <label asp-for="@Model.ExpectedResults">Expected Results*</label>
+                            <textarea class="form-control" rows="3" asp-for="@Model.ExpectedResults" placeholder="Enter the expected results..." data-max-char-limit="2000"></textarea>
+                            <span class="text-muted submit-issue-subtext"> Remaining: 2000 characters</span>
+                        </div>
+
+                        <div class="form-group m-b-25">
+                            <label asp-for="@Model.ActualResults">Actual Results*</label>
+                            <textarea class="form-control" rows="3" asp-for="@Model.ActualResults" placeholder="Enter the actual results or error description..." data-max-char-limit="2000"></textarea>
+                            <span class="text-muted submit-issue-subtext"> Remaining: 2000 characters</span>
+                        </div>
+
+                        <div class="form-group m-b-25">
+                            <label asp-for="@Model.StepsToReproduce ">Steps To Reproduce*</label>
+                            <textarea class="form-control" rows="3" asp-for="@Model.StepsToReproduce" placeholder="Enter the steps to reproduce the error..." data-max-char-limit="2000"></textarea>
+                            <span class="text-muted submit-issue-subtext"> Remaining: 2000 characters</span>
+                        </div>
+
+                        <div class="form-group m-b-25">
+                            <label asp-for="@Model.AssignedTo ">Assign To A User* </label>
+                            <div class="d-inline-flex"
+                                 data-toggle="tooltip"
+                                 data-html="true"
+                                 title="Begin typing to auto searching for a matching user">
+                                <span class="iconify tooltip-icon"
+                                      data-icon="ant-design:info-circle-filled"
+                                      data-inline="false">
+                                </span>
+                            </div>
+                            <div class="autocomplete">
+                                <input type="search" class="form-control" asp-for="@Model.AssignedTo.DisplayName" id="assignedToUserSearch" placeholder="Search Here..." />
+                            </div>
+                            <input type="hidden" class="d-none" asp-for="@Model.AssignedTo.UserID" value="" id="assignedToUserID" />
+                        </div>
+
+                        <div class="form-group m-b-25">
+                            <label> Upload An Image Of the Issue (Optional)</label>
+                            <input name="image" type="file" class="form-control-file">
+                        </div>
+                        <div class="d-none">
+                            <input type="hidden" class="d-none" asp-for="@Model.OriginalAuthor.DisplayName" value="@userContext.DisplayName" />
+                            <input type="hidden" class="d-none" asp-for="@Model.OriginalAuthor.UserID" value="@userContext.Id" />
+                        </div>
+
+
+                        <!-- Submit button -->
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn dashboard-button-primary"> Submit </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<!--    Custom JS
+=============================================== -->
+<script src="~/js/Issue/Submit.js"></script>

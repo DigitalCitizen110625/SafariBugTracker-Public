@@ -1,0 +1,78 @@
+﻿@model ContactMessage
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!--    Back To Top Button
+=============================================== -->
+<a href="#0" target="_self" id="gotoTopButton" class="gotoTop">Top</a>
+
+
+<!--    Alert Message
+=============================================== -->
+<div class="fit-to-screen-width">
+    <partial name="_ControllerAlert" />
+</div>
+
+
+
+<section class="pattern-background d-flex">
+    <div class="jumbotron jumbotron-fluid bg-transparent my-auto mx-auto">
+        <h1 class="display-4 text-center">@ViewData["Title"]</h1>
+    </div>
+</section>
+
+<section class="bg-full bg-white">
+    <div class="container">
+
+        <div class="row contact-row-padding">
+            <div class="col-sm-12 col-md-6 contact-border-right contact-padding-right my-3">
+                <h3 class="section-heading section-heading-center m-b-30">
+                    Like What You See?
+                </h3>
+                <p class="l-h-28 fs-20 mb-5">
+                    I'm a recent college graduate, and currently looking for a Junior Developer position.
+                    If you give me a chance, I'm sure I can be a valuable asset to your organization
+                </p>
+                <a class="btn btn-block btn-social btn-linkedin btn-lg" href="https://ca.linkedin.com/in/bence-karner-883862179">
+                    <span class="fa fa-linkedin text-white"></span>
+                    <div class="text-white">LinkedIn Profile</div>
+                </a>
+                <a class="btn btn-block btn-social btn-github-purple btn-lg" href="https://github.com/DigitalCitizen110625/">
+                    <span class="fa fa-github text-white"></span>
+                    <div class="text-white">Github Portfolio</div>
+                </a>
+            </div>
+
+
+            <div class="col-sm-12 col-md-6 justify-content-center p-0 my-3">
+
+                <!-- Alert Message -->
+                <div class="messages" id="status"></div>
+
+                <div class="row w-100">
+                    <div class="col-sm-12 contact-padding-left">
+                        <h3 class="section-heading section-heading-center m-b-30">
+                            Get In Touch
+                        </h3>
+                        <partial name="Home/_ContactEmailForm" model="@Model" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="spacer-130"></div>
+
+<div class="footer-absolute-wrapper">
+    <partial name="Home/_LayoutFooter" />
+</div>
+
+
+<!--    Custom Javascript
+=============================================== -->
+<script src="~/js/Home/Contact.js"></script>

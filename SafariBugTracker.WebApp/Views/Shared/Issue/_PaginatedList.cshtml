@@ -1,0 +1,72 @@
+﻿@using SafariBugTracker.WebApp.Models.ViewModels;
+@model PaginatedList<IIssue>
+
+@{
+    var printSearchResults = Model != null && Model.Count() > 0;
+}
+
+<div class="m-3">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="issue-table-header">
+                        Product
+                    </th>
+                    <th class="issue-table-header">
+                        Category
+                    </th>
+                    <th class="issue-table-header">
+                        Assigned To
+                    </th>
+                    <th class="issue-table-header">
+                        Expected Results
+                    </th>
+                    <th class="issue-table-header">
+                        Actual Results
+                    </th>
+                    <th class="issue-table-header">
+                        Status
+                    </th>
+                    <th class="issue-table-header">
+                        Actions
+                    </th>
+                    <th class="issue-table-header">
+                        Attachment
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (printSearchResults)
+                {
+                    @foreach (var item in Model)
+                    {
+                        <partial name="Issue/_issue" model="item" />
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <!--  Pagination Buttons-->
+    <div class="pagination-button-container">
+        @{
+            var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+            var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+        }
+
+
+        <a asp-action="Search"
+            asp-route-pageIndex="@(Model.PageIndex - 1)"
+            class="btn @prevDisabled">
+            Previous
+        </a>
+        <a asp-action="Search"
+            asp-route-pageIndex="@(Model.PageIndex + 1)"
+            class="btn @nextDisabled">
+            Next
+        </a>
+    </div>
+</div>

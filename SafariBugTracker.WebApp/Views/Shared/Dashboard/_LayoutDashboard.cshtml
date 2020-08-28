@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=9" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Safari - @ViewData["Title"]</title>
+
+
+    <!--    Vendor CSS Packages
+    =============================================== -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap">
+
+
+    <!--    Custom CSS
+    =============================================== -->
+    <link rel="stylesheet" href="~/css/dashboard.css">
+    <link rel="stylesheet" href="~/css/utility.css">
+
+
+    <!--    Bootstrap 4 JS
+    =============================================== -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
+    <!--    Vendor JS
+    =============================================== -->
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+    <script src="https://kit.fontawesome.com/a7e3510d68.js"></script>
+
+
+    <!--    Custom Javascript
+    =============================================== -->
+    <script src="~/js/Dashboard/Custom.js"></script>
+
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+
+        <!-- Sidebar -->
+        <partial name="Dashboard/_LayoutDashboardSidebar" />
+
+
+        @*Do not change the id. It's needed to keep the content from being pushed off the viewport*@
+        <div id="page-content-wrapper">
+
+            <!-- Navbar -->
+            <partial name="Dashboard/_LayoutDashboardNavbar" />
+
+            <!-- Page Content -->
+            <div class="page-container">
+                <div class="content-wrap">
+                    @RenderBody()
+                </div>
+
+
+                <!-- Footer -->
+                <footer class="dashboard-footer">
+                    <div class="w-100 text-center">
+                        <div class="d-inline-flex">
+                            <a class="mx-1" href="https://github.com/DigitalCitizen110625/SafariBugTracker">Source Code</a>
+                        </div>
+                        <div class="d-inline-flex">
+                            <a class="mx-1" href="https://github.com/DigitalCitizen110625/">Portfolio</a>
+                        </div>
+                        <div class="d-inline-flex">
+                            <a class="mx-1" href="https://ca.linkedin.com/in/bence-karner-883862179">LinkedIn</a>
+                        </div>
+                        <div class="d-inline-flex">
+                            <a class="mx-1" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </div>
+                    </div>
+                    <div class="w-100 text-center">
+                        <p class="text-muted p-b-5" style="margin-bottom: 0px;">&copy; 2020 - Safari Bug Tracker</p>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,222 @@
+﻿@model Issue
+@{
+    ViewData["Title"] = "Edit The Issue";
+    Layout = "~/Views/Shared/Dashboard/_LayoutDashboard.cshtml";
+    var updatedDateValue = Model.UpdatedDate.ToString("G");
+    var submissionDate = Model.SubmissionDate.ToString("G") ?? "No Updates Were Found";
+    var showAttachment = Model.Image != null && Model.ContentType != null;
+    var showMessages = Model.Messages != null && Model.Messages.Count > 0;
+}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <!-- View Title Heading -->
+                <partial name="_PageTitle" model="@ViewData["Title"]" />
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+
+                <!-- Print the result of the submission -->
+                <partial name="_ControllerAlert" />
+
+                <div class="card dashboard-card mx-auto">
+                    <div class="card-body">
+                        <form asp-action="Edit" method="post">
+
+                            <div asp-validation-summary="All" class="text-danger"></div>
+
+                            <div class="form-group row">
+                                <label asp-for="@Model.Id" class="col-sm-2 col-form-label no-overflow">  </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" asp-for="@Model.Id" disabled>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label asp-for="@Model.SubmissionDate" class="col-sm-2 col-form-label no-overflow">  </label>
+                                <div class="col-sm-10">
+                                    <input type="hidden" class="d-none" asp-for="@Model.SubmissionDate">
+                                    <input type="text" class="form-control" asp-for="@submissionDate" disabled>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label asp-for="@Model.UpdatedDate" class="col-sm-2 col-form-label no-overflow">  </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" asp-for="@updatedDateValue" disabled>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label asp-for="@Model.OriginalAuthor" class="col-sm-2 col-form-label no-overflow"></label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" asp-for="@Model.OriginalAuthor.DisplayName" readonly>
+                                    <input type="hidden" class="d-none" asp-for="@Model.OriginalAuthor.UserID" value="@Model.OriginalAuthor.UserID" />
+                                    <input type="hidden" class="d-none" asp-for="@Model.OriginalAuthor.Date" value="@Model.OriginalAuthor.Date" />
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label asp-for="@Model.AssignedTo" class="col-sm-2 col-form-label no-overflow"> Assigned To </label>
+                                <div class="col-sm-10">
+                                    <input type="hidden" class="d-none" asp-for="@Model.AssignedTo.UserID" value="@Model.AssignedTo.UserID">
+                                    <input type="hidden" class="d-none" asp-for="@Model.AssignedTo.Date" value="@Model.AssignedTo.Date">
+                                    <input type="text" class="form-control" asp-for="@Model.AssignedTo.DisplayName" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label asp-for="@Model.Project" class="col-sm-2 col-form-label no-overflow">  </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" asp-for="@Model.Project" placeholder="Property Not Set" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label asp-for="@Model.Team" class="col-sm-2 col-form-label no-overflow">  </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" asp-for="@Model.Team" placeholder="Property Not Set" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label asp-for="@Model.Platform" class="col-sm-2 col-form-label no-overflow"></label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" asp-for="@Model.Platform" placeholder="Property Not Set">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label asp-for="@Model.Product" class="col-sm-2 col-form-label no-overflow">  </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" asp-for="@Model.Product" placeholder="Property Not Set">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label asp-for="@Model.Category" class="col-sm-2 col-form-label no-overflow">  </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" asp-for="@Model.Category">
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label asp-for="@Model.Version" class="col-sm-2 col-form-label no-overflow"></label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" asp-for="@Model.Version" placeholder="Property Not Set">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label asp-for="@Model.ResolveStatus" class="col-sm-2 col-form-label no-overflow"></label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" asp-for="@Model.ResolveStatus">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="@Model.ExpectedResults"></label>
+                                <textarea class="form-control" rows="3" asp-for="@Model.ExpectedResults">></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.ActualResults"></label>
+                                <textarea class="form-control" rows="3" asp-for="@Model.ActualResults"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.StepsToReproduce"></label>
+                                <textarea class="form-control" rows="3" asp-for="@Model.StepsToReproduce"></textarea>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>Attached Image/File</label>
+                                @if (showAttachment)
+                                {
+                                    var base64 = Convert.ToBase64String(Model.Image);
+                                    var convertedImage = String.Format($"data:{Model.ContentType};base64,{base64}");
+                                    <div class="" style="border: 1px solid #ddd; border-radius: 4px; padding: 10px;">
+                                        <img src="@convertedImage" alt="Image for the issue" class="d-block mx-auto image-popup-no-margins" href="@convertedImage" style="cursor:pointer; max-height:600px; max-width:75%;" />
+                                    </div>
+                                    <input type="hidden" class="d-none" asp-for="@Model.Image">
+                                    <input type="hidden" class="d-none" asp-for="@Model.ContentType">
+                                }
+                                else
+                                {
+                                    <div class="" style="border: 1px solid #ddd; border-radius: 4px; padding: 8px; background-color: #E9ECEF;">
+                                        <div class="text-center">
+                                            <i class="fas fa-times-circle fa-2x" style="color: indianred;"></i>
+                                            <br />
+                                            <small>No File Attachment Was Found</small>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="@Model.Messages"></label>
+                                <div class="d-inline-flex"
+                                     data-toggle="tooltip"
+                                     data-html="true"
+                                     title="Enter your message below, and press the save button to create a new post">
+                                    <span class="iconify tooltip-icon"
+                                          data-icon="ant-design:info-circle-filled"
+                                          data-inline="false">
+                                    </span>
+                                </div>
+                                @if (showMessages)
+                                {
+                                    <div class="messages-wrapper">
+                                        @{
+                                            for (int i = 0; i < Model.Messages.Count; i++)
+                                            {
+                                                //Mesasges by the issue author will have a different style applied
+                                                bool originalPoster = false;
+                                                if (Model.Messages[i].PosterUserID == Model.OriginalAuthor.UserID)
+                                                {
+                                                    originalPoster = true;
+                                                }
+                                                <partial name="Issue/_IssueMessage" model="(originalPoster, Model.Messages[i])" />
+
+                                                //Because the Model.Messages property is a list of objects, all previous messages have to be available on the page as a collection,
+                                                //  otherwise, they won't post to the controller, and the new messages will just overwrite the previous collection
+                                                <input type="hidden" class="d-none" asp-for="@Model.Messages[i].PosterUserID">
+                                                <input type="hidden" class="d-none" asp-for="@Model.Messages[i].PosterDisplayName">
+                                                <input type="hidden" class="d-none" asp-for="@Model.Messages[i].PostDate">
+                                                <input type="hidden" class="d-none" asp-for="@Model.Messages[i].MessageContent">
+                                            }
+                                        }
+
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="text-center">
+                                        <small>No messages have been posted regarding this issue</small>
+                                    </div>
+                                }
+
+                                <textarea class="form-control" rows="1" for="message" name="message" placeholder="Enter your message here..."></textarea>
+                            </div>
+
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary edit-button">Save</button>
+                                <button type="submit" class="btn btn-primary edit-button" asp-controller="Issue" asp-action="Search">Close</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--    Custom JS
+=============================================== -->
+<link rel="stylesheet" href="~/css/magnific-popup.css">
+<script type="text/javascript" src="~/js/Vendor/jquery.magnific-popup.js"></script>
+<script type="text/javascript" src="~/js/Issue/Edit.js"></script>

@@ -1,0 +1,39 @@
+﻿<div class="dashboard-sidebar" id="sidebar-wrapper">
+    <div>
+        <a asp-controller="Home" asp-action="Index">
+            <div class="sidebar-heading">Safari Bug Tracker</div>
+        </a>
+    </div>
+
+
+    <div class="list-group list-group-flush">
+        <a class="list-group-item list-group-item-action dashboard-sidebar-item" asp-controller="Home" asp-action="Index">
+            <span class="iconify d-inline-flex m-r-15" data-icon="zondicons:php-elephant" data-inline="true" data-width="16" data-height="16"></span>
+            <div class="d-inline-flex dashboard-sidebar-item-link">Home</div>
+        </a>
+        <a class="list-group-item list-group-item-action dashboard-sidebar-item" asp-controller="Dashboard" asp-action="Index">
+            <i class="fas fa-chart-line d-inline-flex p-r-15"> </i>
+            <div class="d-inline-flex dashboard-sidebar-item-link">Dashboard</div>
+        </a>
+        <a class="list-group-item list-group-item-action dashboard-sidebar-item" asp-controller="Issue" asp-action="UserIssues">
+            <i class="fas fa-tasks d-inline-flex p-r-15"></i>
+            <div class="d-inline-flex dashboard-sidebar-item-link">My Reports</div>
+        </a>
+        <a class="list-group-item list-group-item-action dashboard-sidebar-item" asp-controller="Issue" asp-action="Search">
+            <i class="fas fa-search d-inline-flex p-r-15"> </i>
+            <div class="d-inline-flex dashboard-sidebar-item-link">Search</div>
+        </a>
+        <a class="list-group-item list-group-item-action dashboard-sidebar-item" asp-controller="Issue" asp-action="Submit">
+            <i class="fas fa-database d-inline-flex p-r-15"> </i>
+            <div class="d-inline-flex dashboard-sidebar-item-link">Submit</div>
+        </a>
+        <a class="list-group-item list-group-item-action dashboard-sidebar-item" asp-controller="UserManagement" asp-action="Team">
+            <i class="fas fa-users d-inline-flex p-r-15"> </i>
+            <div class="d-inline-flex dashboard-sidebar-item-link">Team</div>
+        </a>
+        <a class="list-group-item list-group-item-action dashboard-sidebar-item" asp-controller="Note" asp-action="Index">
+            <i class="fas fa-sticky-note d-inline-flex p-r-15"> </i>
+            <div class="d-inline-flex dashboard-sidebar-item-link">Notes</div>
+        </a>
+    </div>
+</div>

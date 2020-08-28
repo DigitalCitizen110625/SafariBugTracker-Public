@@ -1,0 +1,22 @@
+﻿@using SafariBugTracker.WebApp.Models.ViewModels
+@model PaginatedList<IIssue>
+@{
+    ViewData["Title"] = "My Reports";
+    Layout = "~/Views/Shared/Dashboard/_LayoutDashboard.cshtml";
+}
+
+<!-- Print any errors or success to the view -->
+<partial name="_ControllerAlert" />
+
+
+<!-- Page Tile -->
+<partial name="_PageTitle" model="@ViewData["Title"]" />
+
+
+<!-- Query Results Table -->
+<partial name="Issue/_PaginatedList" model="@Model">
+
+
+<!--    Pagination.js
+=============================================== -->
+<script src="https://pagination.js.org/dist/2.1.5/pagination.min.js"></script>

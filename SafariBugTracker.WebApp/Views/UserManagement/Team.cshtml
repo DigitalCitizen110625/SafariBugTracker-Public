@@ -1,0 +1,164 @@
+﻿@using SafariBugTracker.WebApp.Models.ViewModels;
+@model IEnumerable<UserViewModel>
+@{
+    ViewData["Title"] = "Users In Your Team";
+    Layout = "~/Views/Shared/Dashboard/_LayoutDashboard.cshtml";
+    var Roles = new List<string>() { "Project Manager", "User" };
+}
+
+<!-- Only show the admin options panel to users with the Administrators, or ProjectManager roles -->
+@if (User.Identity.IsAuthenticated && (User.IsInRole("Administrator") || User.IsInRole("Project Manager")))
+{
+
+    <!--Collapsible button to show/hide the admin options panel -->
+    <button id="collapsiblePanel" class="collapsible text-center">User Administration Options</button>
+    <div id="content" class="content">
+        <div class="dashboard-search-panel">
+
+            <!-- Show the Add User, and Manage Roles tabs -->
+            <ul class="nav nav-tabs border-0 pt-2">
+                <li class="nav-item w-50 text-center">
+                    <a class="nav-link search-tab active" data-toggle="tab" href="#simpleSearch">Add User</a>
+                </li>
+                <li class="nav-item w-50 text-center">
+                    <a class="nav-link search-tab" data-toggle="tab" href="#advancedSearch">Manage Roles</a>
+                </li>
+            </ul>
+            <div class="tab-content card-body">
+
+
+                <!-- Add User Tab -->
+                <div id="simpleSearch" class="tab-pane fade show active">
+                    <form method="post" action="AddUser">
+
+                        <!-- Print a list of all validation errors  -->
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                        <div class="form-row">
+                            <div class="form-group d-inline-block w-50 p-r-5">
+                                <label for="FirstName" class="text-white">FirstName*</label>
+                                <input for="FirstName" name="FirstName" class="form-control register-form-control" placeholder="Enter first name" />
+                            </div>
+                            <div class="form-group d-inline-block w-50 p-l-5">
+                                <label for="LastName" class="text-white">LastName*</label>
+                                <input for="LastName" name="LastName" class="form-control register-form-control" placeholder="Enter last name" />
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="DisplayName" class="text-white">DisplayName*</label>
+                            <input for="DisplayName" name="DisplayName" class="form-control register-form-control" placeholder="Enter display name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Position" class="text-white">Position</label>
+                            <input for="Position" name="Position" class="form-control register-form-control" placeholder="Developer, Designer, QA etc." />
+                        </div>
+                        <div class="form-group">
+                            <label for="Email" class="text-white">Email*</label>
+                            <input for="Email" name="Email" class="form-control register-form-control" placeholder="Email@domain.com" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Password" class="text-white">Password*</label>
+                            <input for="Password" name="Password" class="form-control register-form-control" placeholder="Enter password"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="ConfirmPassword" class="text-white">Confirm Password*</label>
+                            <input for="ConfirmPassword" name="ConfirmPassword" class="form-control register-form-control"  placeholder="Re-enter password"/>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group d-inline-block w-50 p-r-5">
+                                <label for="Team" class="text-white">Team</label>
+                                <input for="Team" name="Team" class="form-control register-form-control" placeholder="Assign to a team" />
+                            </div>
+                            <div class="form-group d-inline-block w-50 p-l-5">
+                                <label for="Project" class="text-white">Project</label>
+                                <input for="Project" name="Project" class="form-control register-form-control" placeholder="Assign to a project" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Role" class="text-white">Role</label>
+                            <br />
+                            @foreach (var role in Roles)
+                            {
+                                <div class="text-white">
+                                    <input type="radio" for="role" name="role" value="@role" class="text-white" /> @role 
+                                </div>
+                            }
+                        </div>
+
+                        <div class="form-row d-block text-center">
+                            <button id="addUserSubmitButton" type="submit" value="submit" class="btn dashboard-button-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+
+
+                <!-- Advanced Search Tab-->
+                <div id="advancedSearch" class="tab-pane fade">
+                    <form method="post" asp-action="EditUserRoles" asp-controller="UserManagement">
+
+                        <div class="form-group">
+                            <label class="text-white">Users In Your Team</label>
+                            <select class="form-control register-form-control" for="UserId" name="UserId" asp-items="@(new SelectList(Model, "Id", "UserName"))">
+                                <option value=null disabled selected>Select a user</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="text-white">Enter Their New Role</label>
+                            <input for="Role" name="Role" class="form-control register-form-control" placeholder="Enter Role..." />
+                        </div>
+
+                        <div class="form-row d-block text-center">
+                            <button id="addUserSubmitButton" type="submit" value="submit" class="btn dashboard-button-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Display any alerts from the controller -->
+<partial name="_ControllerAlert" />
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <!-- Print the views title -->
+            <partial name="_PageTitle" model="@ViewData["Title"]" />
+
+        </div>
+    </div>
+    <div class="profile-card-container">
+        @*<div class="col-sm-12">*@
+
+
+        <!-- Display all users with the same team designation as the logged in user -->
+        @if (Model != null)
+        {
+            @foreach (var user in Model)
+            {
+                <partial name="UserManagement/_ProfileCard" model="user" />
+            }
+        }
+        else
+        {
+            <!-- Users team designation was empty -->
+            <br />
+            <div class="text-center">
+                <h4>It looks like you're not part of a team yet. Please see our <a href="../Dashboard/Help"> help section </a> if you wish to register new users to your team, or how to change your own team designation </h4>
+                <br />
+                <img src="~/images/undraw_meet_the_team_e5b7.svg" alt="No Team Image" class="img-fluid" />
+            </div>
+        }
+        @*</div>*@
+    </div>
+</div>
+
+
+<!--    Custom JS
+=============================================== -->
+<script src="~/js/UserManagement/Team.js"></script>

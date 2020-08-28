@@ -1,0 +1,39 @@
+﻿@model Issue
+    <tr class="">
+        <td class="issue-table-cell issue-cell-text">
+            @Model.Product
+        </td>
+        <td class="issue-table-cell issue-cell-text">
+            @Model.Category
+        </td>
+        <td class="issue-table-cell issue-cell-text">
+            @Model.AssignedTo.DisplayName
+        </td>
+        <td class="issue-table-cell text-left issue-cell-text">
+            <div class="fade-y-overflow">
+                @Model.ExpectedResults
+            </div>
+        </td>
+        <td class="issue-table-cell text-left issue-cell-text">
+            <div class="fade-y-overflow">
+                @Model.ActualResults
+            </div>
+        </td>
+        <td class="issue-table-cell text-center issue-cell-text">
+            @Model.ResolveStatus
+        </td>
+        <td class="issue-table-cell text-center">
+            <button type="button"
+                    class="btn btn-info w-100 issue-cell-text"
+                    name="deleteButton"
+                    onclick="location.href='@Url.Action($"Edit", "Issue",  new { id = $"{Model.Id}"})'">
+                &nbsp;View&nbsp;
+            </button>
+        </td>
+        <td class="issue-table-cell text-center">
+            @if (Model.Image != null)
+            {
+                <i class="fa fa-paperclip" aria-hidden="true"></i>
+            }
+        </td>
+    </tr>

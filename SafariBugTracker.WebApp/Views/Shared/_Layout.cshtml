@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=9" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Safari - @ViewData["Title"]</title>
+
+
+    <!--    Vendor CSS Packages
+    =============================================== -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="~/css/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="~/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/bootstrap-social.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap">
+
+
+    <!--    Custom CSS
+    =============================================== -->
+    <link rel="stylesheet" href="~/css/custom.css" />
+    <link rel="stylesheet" href="~/css/utility.css" />
+
+
+    <!--    Bootstrap 4
+    =============================================== -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+    <!--    Vendor Javascript
+    =============================================== -->
+    <script src="https://kit.fontawesome.com/a7e3510d68.js"></script>
+    <script src="https://kit.fontawesome.com/799c548f01.js" crossorigin="anonymous"></script>
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+    <script src="~/js/Vendor/jquery.magnific-popup.js"></script>
+    <script src="~/js/Vendor/modernizr.min.js"></script>
+    <script src="~/js/Vendor/wow.js"></script>
+
+
+    <!--    Custom Javascript
+    =============================================== -->
+    <script src="~/js/Custom.js"></script>
+
+</head>
+<body class="">
+    <header>
+        <partial name="Home/_LayoutNavbar" />
+    </header>
+
+
+    <!-- Main Body -->
+    <div id="body" class="container-fluid">
+        <main>
+            @RenderBody()
+        </main>
+    </div>
+
+        @RenderSection("Scripts", required: false)
+</body>
+</html>

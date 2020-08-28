@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Note>
+@{
+    ViewData["Title"] = "Your Notes";
+    Layout = "~/Views/Shared/Dashboard/_LayoutDashboard.cshtml";
+
+
+    //If an error occured during the query for the users notes, then the model will be null, 
+    //  otherwise the model will be instantiated and contain some, or no notes
+    var notesFound = Model != null && Model.Count() > 0;
+    var noNotes = Model != null && Model.Count() < 1;
+}
+
+<!-- Print any errors or success to the view -->
+<partial name="_ControllerAlert" />
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <!-- Print the views title -->
+            <partial name="_PageTitle" model="@ViewData["Title"]" />
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            @if (notesFound)
+            {
+                @foreach (var note in Model)
+                {
+                    <partial name="Note/_NoteCard" model="note" />
+                }
+            }
+            else if (noNotes)
+            {
+                <div id="noNotesHeading" class="text-center my-3">
+                    <h5 class="d-block">Looks like you don't have any notes</h5> 
+                    <h5 class="d-block">Click the "+" icon to create a new note</h5>
+                </div>
+            }
+            <div id="createNote">+</div>
+        </div>
+
+
+
+        <!-- Modal edit window -->
+        <div class="modal fade" id="NoteModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div id="note-modal-header" class="modal-header">
+                        <input id="NoteModalTitle" class="modal-title d-block w-100" type="text" value="" />
+                        <small id="NoteModalId" class="d-none"></small>
+                    </div>
+                    <div class="modal-body p-3">
+                        <textarea id="NoteModalTextArea" rows="8" class="w-100" data-max-char-limit="5000"></textarea>
+                        <div class="d-flex">
+                            <small id="NoteModalCharRemaining" class="text-muted mr-auto my-auto">Remaining: </small>
+                            <small id="NoteModalTimestamp" class="text-muted"></small>
+                            <button id="DeleteNote" type="button" class="modal-delete-button" data-dismiss="modal">Delete</button>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="mx-auto">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button id="SaveNote" type="button" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Save note toast message  -->
+                <div id="toast" class="toast note-toast">
+                    <div id="toast-header" class="toast-header note-toast"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--    Custom JS
+=============================================== -->
+<script src="~/js/Notes/Notes.js"></script>

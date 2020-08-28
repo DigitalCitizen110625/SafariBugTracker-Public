@@ -1,0 +1,74 @@
+﻿@using SafariBugTracker.WebApp.Models.ViewModels;
+@model UserViewModel
+@{
+    bool useProfileImage = Model.ProfileImage != null;
+}
+    <div class="card dashboard-card mx-auto p-4">
+        <form method="post" asp-action="Edit" asp-controller="Account" autocomplete="off" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="d-flex my-auto h-100 w-100 mx-auto">
+                        @{
+                            if (useProfileImage)
+                            {
+                                var base64 = Convert.ToBase64String(Model.ProfileImage);
+                                var convertedImage = String.Format($"data:{Model.ContentType};base64,{base64}");
+                                <img src="@convertedImage" alt="User Profile Image " class="card-img-top profile-image d-block my-auto h-auto mx-auto" />
+                                <input type="hidden" asp-for="@Model.ProfileImage"class="d-none">
+                                <input type="hidden" asp-for="@Model.ContentType" class="d-none">
+                            }
+                            else
+                            {
+                                <img class="card-img-top profile-image w-100 h-100 d-block mx-auto my-auto" src="~/images/profileAvatar/defaultUser.svg" alt="Default User Profile Image">
+                            }
+                        }
+                    </div>
+
+                </div>
+                <div class="col-sm-12 col-md-6">
+
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <input asp-for="@Model.UserName" type="hidden" class="form-control" placeholder="Enter new username">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.FirstName">First Name</label>
+                        <input asp-for="@Model.FirstName" type="text" class="form-control" placeholder="Enter new display name">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.LastName">Last Name</label>
+                        <input asp-for="@Model.LastName" type="text" class="form-control" placeholder="Enter new display name">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.DisplayName">Display Name</label>
+                        <input asp-for="@Model.DisplayName" type="text" class="form-control" placeholder="Enter new display name">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Email"></label>
+                        <input asp-for="@Model.Email" type="email" class="form-control" placeholder="Enter new email">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Password"></label>
+                        <input asp-for="@Model.Password" type="text" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Project"></label>
+                        <input asp-for="@Model.Project" type="text" class="form-control" placeholder="Enter project">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Team"></label>
+                        <input asp-for="@Model.Team" type="text" class="form-control" placeholder="Enter team">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Position"></label>
+                        <input asp-for="@Model.Position" type="text" class="form-control" placeholder="Enter position">
+                    </div>
+                    <div class="form-group">
+                        <label> Upload A New Profile Image (Optional)</label>
+                        <input name="image" type="file" class="form-control-file">
+                    </div>
+                    <button type="submit" class="btn dashboard-button-primary">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>

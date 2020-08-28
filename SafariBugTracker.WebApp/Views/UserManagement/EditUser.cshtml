@@ -1,0 +1,29 @@
+﻿@using SafariBugTracker.WebApp.Models.ViewModels;
+@model UserViewModel
+@{
+    ViewData["Title"] = "Edit The Profile";
+    Layout = "~/Views/Shared/Dashboard/_LayoutDashboard.cshtml";
+}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <!-- Print the views title -->
+                <partial name="_PageTitle" model="@ViewData["Title"]" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+
+
+                <!-- Print the result of the submission -->
+                <partial name="_ControllerAlert" />
+
+
+                <!-- Show the users properties, and their values -->
+                <partial name="Account/_ProfileEditor" model="@Model" />
+            </div>
+        </div>
+    </div>

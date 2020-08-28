@@ -1,0 +1,16 @@
+﻿@model Note
+
+<div class="card sticky-note">
+    <div class="note-inner-container">
+        <div class="card-header">
+            <h5 class="">@Model.Title</h5>
+        </div>
+        <div class="card-body">
+            <p class="card-text">@Model.Content</p>
+        </div>
+        <div class="d-none">
+            <div data-rowkey>@Model.RowKey</div>
+            <div data-timestamp>@Model.TimeStamp</div>
+        </div>
+    </div>
+</div>

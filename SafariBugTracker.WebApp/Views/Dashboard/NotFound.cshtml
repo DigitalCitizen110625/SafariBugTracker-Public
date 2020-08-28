@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "~/Views/Shared/Dashboard/_LayoutDashboard.cshtml";
+}
+
+
+<!-- Print any errors or success to the view -->
+<partial name="_ControllerAlert" />
+
+<div class="container">
+    <div class="row my-5">
+        <div class="col-sm-12 text-center">
+            <h1>We're sorry, but the requested resource could not be found</h1>
+            <br />
+            <h3 class="d-block w-75 mx-auto text-muted">
+                Please contact your system admin,  or send us a
+                <a asp-controller="Home" asp-action="Contact"> message </a> if you believe this to be an error
+            </h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <img class="center-image" src="~/images/undraw_not_found_60pq.svg" alt="ResourceNotFound" />
+    </div>
+</div>

@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using SafariBugTracker.WebApp.Areas.Identity.Data
+
+@inject SignInManager<UserContext> SignInManager
+@inject UserManager<UserContext> UserManager
+
+    <ul class="navbar-nav">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <li class="nav-item">
+                <a id="manage" class="nav-link text-white" asp-controller="Account" asp-action="Edit" title="Manage">@UserManager.GetUserName(User)</a>
+            </li>
+            <li class="nav-item">
+                <form id="logoutForm" class="form-inline text-center mx-auto" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button id="logout" type="submit" class="nav-link btn btn-link text-white text-center mx-auto">Logout</button>
+                </form>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+            </li>
+        }
+        else
+        {
+            <li class="nav-item">
+                <a class="nav-link text-white" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            </li>
+        }
+    </ul>

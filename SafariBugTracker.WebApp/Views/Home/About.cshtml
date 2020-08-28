@@ -1,0 +1,314 @@
+﻿
+@{
+    ViewData["Title"] = "About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--    Back To Top Button
+=============================================== -->
+<a href="#0" target="_self" id="gotoTopButton" class="gotoTop">Top</a>
+
+
+<section class="pattern-background d-flex">
+    <div class="jumbotron jumbotron-fluid bg-transparent my-auto mx-auto">
+        <h1 class="display-4 text-center">@ViewData["Title"]</h1>
+    </div>
+</section>
+
+<section class="">
+    <div class="container">
+        <div class="row my-5">
+            <div class="col-sm-12 col-md-8 offset-md-2">
+                <h5 class="underline">A Brief Overview of Safari</h5>
+                <p class="">
+                    &nbsp;&nbsp;&nbsp;&nbsp; Safari is a free issue management/bug tracker system. It’s a collection of products created to facilitate the development process, and help teams keep track of bugs/issues impacting their system.
+                    <br />
+                    <br />
+                    <b>To see the complete Software Requirements Specifications (SRS), please click <a href="DEBUG ADD LINK TO GITHUB DOC WITH SRS"> here </a></b>
+                    <br />
+
+                </p>
+
+
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col" class="text-center">Who Was Safari made For?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>
+                                    Anyone can use Safari, but the system was designed with technical users in mind, including:
+                                </p>
+                                <ul>
+                                    <li>
+                                        Software Developers
+                                    </li>
+                                    <li>
+                                        Project Managers
+                                    </li>
+                                    <li>
+                                        QA/Support Staff
+                                    </li>
+                                    <li>
+                                        General Users
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col" class="text-center">Use Cases</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>
+                                    Safari can be used in a multitude of scenarios, but it's main purpose was to solve IT related problems, including but not limited too:
+                                </p>
+                                <ul>
+                                    <li>
+                                        Bug tracking
+                                    </li>
+                                    <li>
+                                        Agile software development
+                                    </li>
+                                    <li>
+                                        Ticketing support
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row my-5">
+            <div class="col-sm-12 col-md-8 offset-md-2">
+                <h5 class="underline">Components Overview</h5>
+                <p>
+                    The system relies on many services, and components, which can be grouped into the following three main areas
+                </p>
+
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col" class="text-center">Safari Web Application </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>
+                                    &nbsp;&nbsp;&nbsp;&nbsp; The web app is the main component of the system. It provides a UI for users to interact with the
+                                    system, and it’s responsible for managing logins, registrations, and user accounts, and for communicating
+                                    with the Issue API, Logger API, and Azure Storage API.
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col" class="text-center">Issue API </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>
+                                    &nbsp;&nbsp;&nbsp;&nbsp; As the name suggests, the issue API is responsible for processing all incoming http requests
+                                    for bug/issue related records. It acts as middleman between the web application, and the mongodb
+                                    database where the issue records are stored. It also supports querying/filtering at the database
+                                    and limiting the number of results returned.
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col" class="text-center">Logging API </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>
+                                    &nbsp;&nbsp;&nbsp;&nbsp; The logger component is a specialized RESTful API designed to receive
+                                    http requests containing log data. Depending on the options defined in the
+                                    config file, the logger can be set to save data locally, or to Azures table
+                                    storage, or Blob storage. Config options are also available to set the file
+                                    output to .txt, .json, or xml. These options can be set at any time and will
+                                    +take effect on the next incoming request.
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+        <div class="row my-5">
+            <div class="col-sm-12 col-md-8 offset-md-2">
+                <h5 class="underline">Technologies Used To Create Safari </h5>
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col" class="text-center" colspan="1">Technology</th>
+                            <th scope="col" class="text-center">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="about-table-row-height">
+                            <td class="text-center align-middle">
+                                ASP.NET Core
+                                <img src="~/images/dot-net-core-7.svg" alt="ASP.NET Core" class="py-1 border-0 img-responsive" style="max-width: 100px;" />
+                            </td>
+                            <td class="align-middle">
+                                <p class="">
+                                    The foundational framework for the entire project. Both the apis and the web application were written in C#, and used the
+                                    .NET core (v 3.0) framework, and followed the MVC pattern
+                                </p>
+                            </td>
+
+                        </tr>
+                        <tr class="about-table-row-height">
+                            <td class="text-center align-middle">
+                                Mongodb
+                                <img src="~/images/mongodb.svg" alt="MongoDB" class="py-1 border-0 img-responsive" style="max-width: 100px;" />
+                            </td>
+                            <td class="align-middle">
+                                <p>
+                                    MongoDB was used to manage the storage of all issue related data, including all issue entities, uploaded files, and
+                                    exchanged messages from registered users.
+                                </p>
+                            </td>
+                        </tr>
+                        <tr class="about-table-row-height">
+                            <td class="text-center align-middle">
+                                Microsoft SQL Server
+                                <img src="~/images/microsoft-sql-server.svg" alt="Microsoft SQL Server" class="py-1 border-0 img-responsive" style="max-width: 100px;" />
+                            </td>
+                            <td class="align-middle">
+                                <p>
+                                    SQL Server was used in conjunction with the ASP.NET Core Identity system, to store and manage all user/account related data.
+                                </p>
+                            </td>
+                        </tr>
+                        <tr class="about-table-row-height">
+                            <td class="text-center align-middle">
+                                Azure Cloud Storage & Web Hosting
+                                <img src="~/images/azure-1.svg" alt="Azure" class="py-1 border-0 img-responsive" style="max-width: 100px;" />
+                            </td>
+                            <td class="align-middle">
+                                <p>
+                                    Azure is a core component of the system. The web application service was used to host each
+                                    of the three main components, the storage service (i.e. their NoSQL table storage) was used
+                                    for storing user notes, or logs, and the Blob storage was used for providing a central storage
+                                    location for log files.
+                                </p>
+                            </td>
+                        </tr>
+                        <tr class="about-table-row-height">
+                            <td class="text-center align-middle">
+                                Amazon Web Services
+                                <img src="~/images/aws-2.svg" alt="AWS" class="py-1 border-0 img-responsive" style="max-width: 100px;" />
+                            </td>
+                            <td class="align-middle">
+                                <p>
+                                    Amazon Web Services (AWS), and their Simple Email Service (SES) provide the means of sending emails
+                                    from the application. All "contact Us" type messages are sent over SMTP using their SES.
+                                </p>
+                            </td>
+                        </tr>
+                        <tr class="about-table-row-height">
+                            <td class="text-center align-middle">
+                                Microsoft OData Protocol
+                                <img src="~/images/ODataLogo-96.png" alt="ODataProtocol" class="py-1 border-0 img-responsive" style="max-width: 100px;" />
+                            </td>
+                            <td class="align-middle">
+                                <p>
+                                    <i>
+                                        "The Open Data Protocol  OASIS standard that defines a set of best practices for building
+                                        and consuming RESTful APIs"
+                                    </i>
+                                    <a href="https://www.odata.org/">(OData, 2020)</a>. The protocol was used for communicating with
+                                    the Azure storage service, especially  when constructing URI queries, and handling errors from
+                                    the table service
+                                </p>
+                            </td>
+                        </tr>
+                        <tr class="about-table-row-height">
+                            <td class="text-center align-middle">
+                                Swagger/OpenAPI Specification
+                                <img src="~/images/swagger-seeklogo.com.svg" alt="Alternate Text" class="py-1 border-0 img-responsive" style="max-width: 100px;" />
+                            </td>
+                            <td class="align-middle">
+                                <p>
+                                    Swagger UI provides a convenient means of generating documentation for the apis. It provides a
+                                    visual representation of the what the API does, it’s request parameters and response objects.
+                                </p>
+                            </td>
+                        </tr>
+                        <tr class="about-table-row-height">
+                            <td class="text-center align-middle">
+                                Bootstrap
+                                <img src="~/images/bootstrap-4.svg" alt="Alternate Text" class="py-1 border-0 img-responsive" style="max-width: 100px;" />
+                            </td>
+                            <td class="align-middle">
+                                <p>
+                                    Bootstrap was used as the primary CSS Framework for setting the basic styles, and ensuring all views are responsive.
+                                </p>
+                            </td>
+                        </tr>
+                        <tr class="about-table-row-height">
+                            <td class="text-center align-middle">
+                                JS / JQuery / Ajax
+                                <img src="~/images/javascript-1.svg" alt="Alternate Text" class="py-1 border-0 img-responsive" style="max-width: 100px;" />
+                            </td>
+                            <td class="align-middle">
+                                <p>
+                                    JavaScript, and the jQuery library were used to perform all client-side DOM operations.
+                                    AJAX techniques were used when interacting with the Azure storage service, to seamlessly
+                                    create, update, and delete the users saved notes. The jQueryUI library was also used to
+                                    provide additional UI components like a calendar, and simple drop down menus.
+                                </p>
+                            </td>
+                        </tr>
+                        <tr class="about-table-row-height">
+                            <td class="text-center align-middle">
+                                Serilog
+                                <img src="~/images/SerilogLogo.png" alt="Serilog" class="py-1 border-0 img-responsive" style="max-width: 100px;" />
+                            </td>
+                            <td class="align-middle">
+                                <p>
+                                    Serilog is a structured logging framework, and was used in both the web application, and
+                                    issue api. A durable logging strategy was implemented to reduce the risk of losing valuable
+                                    data in the event of a crash, or network failure.
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <small>Logos, and images provided by <a href="https://worldvectorlogo.com/terms-of-use">worldvectorlogo</a> </small>
+            </div>
+        </div>
+    </div>
+</section>
+
+<partial name="Home/_LayoutFooter" />

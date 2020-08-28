@@ -1,0 +1,11 @@
+﻿@using Newtonsoft.Json;
+
+<!-- Display a bootstrap alert based on the type of the alertNotification -->
+@if (TempData["AlertNotification"] != null)
+{
+    var serializedAlert = TempData["AlertNotification"] as string;
+    var alert = JsonConvert.DeserializeObject<UIAlert>(serializedAlert);
+    <div class="alert alert-@alert.Type m-b-0" role="alert">
+        @alert.Message
+    </div>
+}

@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "Help";
+    Layout = "~/Views/Shared/Dashboard/_LayoutDashboard.cshtml";
+}
+
+<!-- Print any errors or success to the view -->
+<partial name="_ControllerAlert" />
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <!-- Print the views title -->
+            <partial name="_PageTitle" model="@ViewData["Title"]" />
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="text-center">
+                <h4>Coming Soon!</h4>
+                <p>Our help section is under construction and will be ready in the next release</p>
+            </div>
+
+        </div>
+    </div>
+</div>

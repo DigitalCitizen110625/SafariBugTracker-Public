@@ -1,0 +1,168 @@
+﻿@using SafariBugTracker.WebApp.Models.ViewModels;
+@model DashboardKPIViewModel
+@{
+    ViewData["Title"] = "Project Dasboard";
+    Layout = "~/Views/Shared/Dashboard/_LayoutDashboard.cshtml";
+
+    bool showCharts = Model != null;
+    var dailyNewCount = Model?.DailyNewCount ?? "N/A";
+    var dailyClosedCount = Model?.DailyClosedCount ?? "N/A";
+    var dailyInProgressCount = Model?.DailyInProgressCount ?? "N/A";
+
+}
+<!-- Print any errors or success to the view -->
+<partial name="_ControllerAlert" />
+
+<div class="container-fluid">
+
+
+    <!-- Daily Summary -->
+    <div class="row my-4">
+        <div class="col-sm-12">
+            <div class="card-deck">
+                <div class="card dashboard-card">
+                    <div class="card-body">
+                        <div class="card-title text-center">
+                            <h5>New Issues (24h)</h5>
+                        </div>
+                        <div class="card-text text-center fs-20">@dailyNewCount</div>
+                    </div>
+                </div>
+                <div class="card dashboard-card">
+                    <div class="card-body">
+                        <div class="card-title text-center">
+                            <h5>
+                                Issues In Progress (24h)
+                            </h5>
+                        </div>
+                        <div class="card-text text-center fs-20 "> @dailyInProgressCount</div>
+                    </div>
+                </div>
+                <div class="card dashboard-card">
+                    <div class="card-body">
+                        <div class="card-title text-center">
+                            <h5>
+                                Issues Closed (24h)
+                            </h5>
+                        </div>
+                        <div class="card-text text-center fs-20">@dailyClosedCount </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Life Long Metrics -->
+    <div class="row my-4">
+        <div class="col-sm-12">
+            <div class="card-deck">
+                <div class="card dashboard-card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Category Breakdown</h5>
+                        @if (showCharts)
+                        {
+                            <canvas id="lifelongCategoryBreakdown" class="small-canvas"></canvas>
+                            <div id="categoryChartLegend"></div>
+                        }
+                        else
+                        {
+                            <div class=" text-center">
+                                <img src="~/images/PieChart.svg" class="img-fluid" style="max-width:400px;" alt="Default pie chart image" />
+                                <small class="d-block text-center">Metrics Unavailable </small>
+                            </div>
+                        }
+                    </div>
+                    <div class="card-footer">
+                        <small class="d-block text-center">Count of records in each category</small>
+                    </div>
+                </div>
+                <div class="card dashboard-card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Status Breakdown</h5>
+                        @if (showCharts)
+                        {
+                            <canvas id="lifelongStatusBreakdown" class="small-canvas"></canvas>
+                            <div id="resolveStatusChartLegend"></div>
+                        }
+                        else
+                        {
+                            <div class=" text-center">
+                                <img src="~/images/PieChart.svg" class="img-fluid" style="max-width:400px;" alt="Default lifelong metrics chart" />
+                                <small class="d-block text-center">Metrics Unavailable </small>
+                            </div>
+                        }
+                    </div>
+                    <div class="card-footer">
+                        <small class="d-block text-center">Count of records with each status</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Monthly Progress Graph -->
+    <div class="row my-4">
+        <div class="col-sm-12">
+            <div class="card dashboard-card">
+                <div class="card-body">
+                    <h4 class="card-title text-center">Monthly Progress</h4>
+                    @if (showCharts)
+                    {
+                        <canvas id="monthlyProgressChart" class="large-canvas"></canvas>
+                    }
+                    else
+                    {
+                        <div class=" text-center">
+                            <img src="~/images/BarChart.svg" class="img-fluid h-auto" style="max-width:800px;" alt="Default monthly metrics chart" />
+                            <p class="d-block text-center">Metrics Unavailable </p>
+                        </div>
+                    }
+                </div>
+                <div class="card-footer">
+                    <small id="monthlyProgressChartSubText" class="d-block text-center my-1">Count of records in each category over the past 30 days </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Team Progress Quick View -->
+    @*<div class="row my-4">
+            <div class="col-sm-12">
+                <div class="card dashboard-large-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Team Performance Snapshot</h5>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+</div>
+
+<!-- Only load the javascript if the view model contains data -->
+@if (showCharts)
+{
+
+
+    <!--    Chart.js
+    =============================================== -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+
+    <!--    Custom JS
+    =============================================== -->
+    <script src="~/js/Dashboard/Index.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+
+
+            document.getElementById("monthlyProgressChartSubText").innerHTML += '(' + new Date().getFullYear() + ')';
+
+            var model = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+            InitCharts(model);
+
+        });
+    </script>
+}

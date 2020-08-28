@@ -1,0 +1,28 @@
+﻿<nav class="navbar navbar-expand-lg dashboard-navbar">
+
+    <!-- Open Menu Button -->
+    <div id="menu-toggle" class="slideout-menu-container">
+        <i class="far fa-arrow-alt-circle-right fa-2x slideout-menu-icon fa-flip-horizontal"></i>
+    </div>
+
+    <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Account
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item text-center" asp-controller="Account" asp-action="Edit">Edit Profile</a>
+                    <div class="dropdown-divider"></div>
+                    <form id="logoutForm" class="text-center dropdown-item" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <button id="logout" type="submit" class="button-0 text-black text-center mx-auto">Logout</button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
