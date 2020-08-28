@@ -16,15 +16,15 @@
 * [FAQ](https://github.com/DigitalCitizen110625/SafariBugTracker-Public#FAQ)
 * [Software Requirment Specifications](https://github.com/DigitalCitizen110625/SafariBugTracker-Public/SRS/SafariBugTracker_SRS.docx)
 
-## :elephant:	(#About-Safari-Bug-Tracker)
+## :elephant:	About Safari Bug Tracker
 Safari is a cloud-based issue management system designed for small agile teams.
 It’s a free solution for QA staff, project managers, and developers seeking to store,
 and quantify software issues in a structured .
 
 
-## :grey_question:	(#FAQ)
-1. Item 1 asdasd
-1. Item 2 asd 
-1. Item 3 adsad
-   1. Item 3a
-   1. Item 3b
+## :grey_question:	FAQ
+1. 
+1. 
+1. 
+   1. 
+   1. 
