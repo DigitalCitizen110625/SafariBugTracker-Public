@@ -17,7 +17,7 @@
 * [Software Requirment Specifications](https://github.com/DigitalCitizen110625/SafariBugTracker-Public/SRS/SafariBugTracker_SRS.docx)
 
 ## :cloud:	Live Demo
-Please visit : <a href="https://safaribugtracker.azurewebsites.net/">SafariBugTracker</a> for a live demo of the system
+Please visit : <a href="https://safaribugtracker.azurewebsites.net/">SafariBugTracker</a> for a live demo of the system. Note that <b> initial load times may be slow </b> due to the fact that its running on Azures free tier app hosting service. 
 
 
 ## :elephant:	About Safari Bug Tracker
