@@ -30,21 +30,15 @@ For a breakdown of its features, subsystems, and technologies used, please see t
 1. Will it run out of the box? <br/> Yes, but all connection strings, and authentication keys were removed from the public release, in order to keep them secure. If you wish to run the application on your own, you must have a SQL, Mongodb, Azure Table Storage, and AWS Simple Email Service set up. Then fill in the configurations in the appsettings.json file, as seen below:  <br/><br/>
   "IssueApiKey": {
     "ApiKey": "YOUR_NEW_KEY_HERE"
-  }, <br/> //This can be any string you want, but it must match the corresponding AuthKey in the IssueAPI appsettings.json file
-
-This is the base URL of where to access the IssueAPI. For example: https://localhost:44371/api/
+  }, <br/> //This can be any string you want, but it must match the corresponding AuthKey in the IssueAPI appsettings.json file <br/><br/>
   "IssueRepositorySettings": {
     "BaseUri": "URL_WHERE_YOU_HOSTED_THE_ISSUE_API"
-  },
-
-These must match with your Azure Storage account, especially the SAS token, which can be generated from the azure portal
+  }<br/> //This is the base URL of where to access the IssueAPI. For example: https://localhost:44371/api/ <br/><br/>
   "AzureTableSettings": {
     "AccountName": "YOUR_AZURE_STORAGE_ACCOUNT_NAME ",
     "SasToken": "YOUR_AUTO_GENERATED_TABLE_SAS_KEY",
     "TableName": "YOUR_TABLE_NAME "
-  }
-
-Fill in your credentials for your email service. Note that the app uses AWS SES, which requires an SmtpUserName, and SmtpPassword in order to access their resources
+  }<br/>//These must match with your Azure Storage account, especially the SAS token, which can be generated from the azure portal <br/><br/>
 "SmtpEmailSettings": {
     "ToAddress": "ENDPOINT_EMAIL_ADDRESS",
     "FromAddress": "SENDER_EMAIL_ADDRESS",
@@ -53,10 +47,7 @@ Fill in your credentials for your email service. Note that the app uses AWS SES,
     "SmtpPassword": "SMTP_PASSWORD",
     "Host": "SMTP_HOST"
     "Port": "SMTP_PORT"
-  },
-  "AllowedHosts": "*",
-
-Add a connection string to your SQL server where the user account data will be stored
+  }<br/> //Fill in your credentials for your email service. Note that the app uses AWS SES, which requires an SmtpUserName, and SmtpPassword in order to access their resources<br/><br/>
   "ConnectionStrings": {
     "SafariBugTrackerWebAppContextConnection": "YOUR_SQL_DB_CONNECTION_STRING"
-  }
+  }<br/> //Add a connection string to your SQL server where the user account data will be stored
