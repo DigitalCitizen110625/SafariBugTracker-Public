@@ -1,6 +1,6 @@
 # SafariBugTracker-Public
 
-![Safari Logo](https://cdn.shopify.com/shopifycloud/hatchful-web/assets/d80321286525089fe6b5a5d4759d0efd.svg)
+![Safari Logo]()
 
 <h1 align="center">Safari Bug Tracker</h1>
  
