@@ -21,7 +21,7 @@ Please visit : <a href="https://safaribugtracker.azurewebsites.net/">SafariBugTr
 
 
 ## :elephant:	About Safari Bug Tracker
-Safari is a cloud-based issue management system designed for small agile teams. It’s a free solution for QA staff, project managers, and developers seeking to store, and quantify software issues in a structured. It was developed in C#/.NET, using the ASP.NET Core framework.
+Safari is a cloud-based issue management system designed for small agile teams. It’s a free solution meant for QA staff, project managers, and developers seeking to store, and quantify software issues in a structured. It was developed in C#/.NET, using the ASP.NET Core framework.
 
 For a breakdown of its features, subsystems, and technologies used, please see the <a href="https://safaribugtracker.azurewebsites.net/Home/About">About page</a>
 
