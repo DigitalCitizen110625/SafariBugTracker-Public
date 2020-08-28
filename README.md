@@ -27,10 +27,10 @@ For a breakdown of its features, subsystems, and technologies used, please see t
 
 
 ## :grey_question:	FAQ
-1. Will it run out of the box? <br/> Yes, but all connection strings, and authentication keys were removed from the public release, in order to keep them secure. If you wish to run the application on your own, you must have a SQL, Mongodb, Azure Table Storage, and AWS Simple Email Service set up. Then fill in the configurations in the appsettings.json file, as seen below:  <br/>
+1. Will it run out of the box? <br/> Yes, but all connection strings, and authentication keys were removed from the public release, in order to keep them secure. If you wish to run the application on your own, you must have a SQL, Mongodb, Azure Table Storage, and AWS Simple Email Service set up. Then fill in the configurations in the appsettings.json file, as seen below:  <br/><br/>
   "IssueApiKey": {
     "ApiKey": "YOUR_NEW_KEY_HERE"
-  }, <br/> This can be any string you want, but it must match the corresponding AuthKey in the IssueAPI appsettings.json file
+  }, <br/> //This can be any string you want, but it must match the corresponding AuthKey in the IssueAPI appsettings.json file
 
 This is the base URL of where to access the IssueAPI. For example: https://localhost:44371/api/
   "IssueRepositorySettings": {
