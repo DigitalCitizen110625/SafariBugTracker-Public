@@ -32,22 +32,22 @@ For a breakdown of its features, subsystems, and technologies used, please see t
     &nbsp;&nbsp;&nbsp; "ApiKey": "YOUR_NEW_KEY_HERE"<br/>
   }<br/> //This can be any string you want, but it must match the corresponding AuthKey in the IssueAPI appsettings.json file <br/><br/>
   "IssueRepositorySettings": {<br/>
-    "BaseUri": "URL_WHERE_YOU_HOSTED_THE_ISSUE_API"<br/>
+    &nbsp;&nbsp;&nbsp; "BaseUri": "URL_WHERE_YOU_HOSTED_THE_ISSUE_API"<br/>
   }<br/> //This is the base URL of where to access the IssueAPI. For example: https://localhost:44371/api/ <br/><br/>
   "AzureTableSettings": {<br/>
-    "AccountName": "YOUR_AZURE_STORAGE_ACCOUNT_NAME ",<br/>
-    "SasToken": "YOUR_AUTO_GENERATED_TABLE_SAS_KEY",<br/>
-    "TableName": "YOUR_TABLE_NAME "<br/>
+    &nbsp;&nbsp;&nbsp; "AccountName": "YOUR_AZURE_STORAGE_ACCOUNT_NAME ",<br/>
+    &nbsp;&nbsp;&nbsp; "SasToken": "YOUR_AUTO_GENERATED_TABLE_SAS_KEY",<br/>
+    &nbsp;&nbsp;&nbsp; "TableName": "YOUR_TABLE_NAME "<br/>
   }<br/>//These must match with your Azure Storage account, especially the SAS token, which can be generated from the azure portal <br/><br/>
 "SmtpEmailSettings": {<br/>
-    "ToAddress": "ENDPOINT_EMAIL_ADDRESS", <br/>
-    "FromAddress": "SENDER_EMAIL_ADDRESS",<br/>
-    "FromName": "DISPLAY_NAME_OF_SENDER",<br/>
-    "SmtpUserName": "SMTP_USERNAME",<br/>
-    "SmtpPassword": "SMTP_PASSWORD",<br/>
-    "Host": "SMTP_HOST",<br/>
-    "Port": "SMTP_PORT"<br/>
+    &nbsp;&nbsp;&nbsp; "ToAddress": "ENDPOINT_EMAIL_ADDRESS", <br/>
+    &nbsp;&nbsp;&nbsp; "FromAddress": "SENDER_EMAIL_ADDRESS",<br/>
+    &nbsp;&nbsp;&nbsp; "FromName": "DISPLAY_NAME_OF_SENDER",<br/>
+    &nbsp;&nbsp;&nbsp; "SmtpUserName": "SMTP_USERNAME",<br/>
+    &nbsp;&nbsp;&nbsp; "SmtpPassword": "SMTP_PASSWORD",<br/>
+    &nbsp;&nbsp;&nbsp; "Host": "SMTP_HOST",<br/>
+    &nbsp;&nbsp;&nbsp; "Port": "SMTP_PORT"<br/>
   }<br/> //Fill in your credentials for your email service. Note that the app uses AWS SES, which requires an SmtpUserName, and SmtpPassword in order to access their resources<br/><br/>
   "ConnectionStrings": {<br/>
-    "SafariBugTrackerWebAppContextConnection": "YOUR_SQL_DB_CONNECTION_STRING"<br/>
+    &nbsp;&nbsp;&nbsp; "SafariBugTrackerWebAppContextConnection": "YOUR_SQL_DB_CONNECTION_STRING"<br/>
   }<br/> //Add a connection string to your SQL server where the user account data will be stored
