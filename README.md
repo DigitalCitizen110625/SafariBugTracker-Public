@@ -13,7 +13,6 @@
 
 * [About](https://github.com/DigitalCitizen110625/SafariBugTracker-Public#elephantabout-safari-bug-tracker)
 * [FAQ](https://github.com/DigitalCitizen110625/SafariBugTracker-Public#grey_questionfaq)
-* [Software Requirment Specifications](https://github.com/DigitalCitizen110625/SafariBugTracker-Public/SRS/SafariBugTracker_SRS.docx)
 
 ## :elephant:	About Safari Bug Tracker
 Safari is a cloud-based issue management system designed for small agile teams. It’s a free solution meant for QA staff, project managers, and developers seeking to store, and quantify software issues in a structured. It was developed in C#/.NET, using the ASP.NET Core framework.
