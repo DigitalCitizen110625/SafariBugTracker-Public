@@ -1,4 +1,4 @@
-DON"T DELETE. THIS VERSION STILL HAS SEPERATE APIS, AND ISNT A MONOLITHIC STRUCTURE
+DON'T DELETE. THIS VERSION STILL HAS SEPERATE APIS, AND ISNT A MONOLITHIC STRUCTURE
 
 <div align="center">
   <img src="https://github.com/DigitalCitizen110625/SafariBugTracker-Public/blob/master/ReadmeAssests/SafariLogo.png">
